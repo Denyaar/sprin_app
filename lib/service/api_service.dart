@@ -47,7 +47,7 @@ class APIService{
 
   }
 
-  Future<http.Response> delete(String url, Map<String, dynamic> body)async{
+  Future<http.Response> delete(String url)async{
     try{
       Uri uri = Uri.parse(_baseUrl + url);
       http.Response response =await http.delete(uri,headers: _headers);

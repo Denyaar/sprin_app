@@ -21,7 +21,7 @@ if(sortType!=null) {
   params ["sortType"]=sortType.toString().split('.').last;
 
    }
-   http.Response response = await _apiService.get("/products", params);
+   http.Response response = await _apiService.get("/products/list", params);
   dynamic responseJson =jsonDecode(response.body);
   final productsData = responseJson['data']['content'] as List;
   List<Product> productList = productsData.map((json) => Product.fromJson(json)).toList();
@@ -39,5 +39,20 @@ if(sortType!=null) {
     final jsonData = responseJson['data'];
     Product savedProduct = Product.fromJson(jsonData);
     return savedProduct;
+  }
+
+  Future<Product> editProduct(Product product) async {
+    http.Response response = await _apiService.put("/products/update", product.toJson(product));
+    dynamic responseJson = jsonDecode(response.body);
+    final jsonData = responseJson['data'];
+    Product editedProduct = Product.fromJson(jsonData);
+    return editedProduct;
+  }
+
+
+  void deleteProduct(Product product) async {
+    http.Response response = await _apiService.delete("/products/delete/${product.id}");
+    dynamic responseJson = jsonDecode(response.body);
+    final jsonMessage = responseJson["message"];
   }
 }
