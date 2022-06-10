@@ -24,6 +24,15 @@ class Product {
         image: json['image'],
         price: json['price']);
   }
+  Map<String, dynamic> toJson(Product product) {
+    return{
+      "id":product.id,
+      "name":product.name,
+      "description":product.description,
+      "image":product.image,
+      "price":product.price,
+    };
+  }
 
   @override
   String toString() {
@@ -34,5 +43,7 @@ class Product {
         ' price: $price}';
   }
 
-  
+
+
+
 }
