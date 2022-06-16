@@ -1,6 +1,8 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:procductandroid/common/constants.dart';
 
 
 class ElevButton extends StatelessWidget {
@@ -13,11 +15,16 @@ class ElevButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevButton(
-
-
-        text: text,
-        icon: icon,
-        onPressed: onPressed);
+    return ElevatedButton(
+        style:ElevatedButton.styleFrom(primary: color??App_COLOR),
+        onPressed: (){onPressed();},
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+              Icon(icon),
+            SizedBox(width: 10),
+          Text(text),
+          ],
+        ));
   }
 }
